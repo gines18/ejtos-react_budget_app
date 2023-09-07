@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import "./Budget.css";
+import { CurrencyContext } from './CurrencyContext';
 
 const Budget = () => {
   const { budget, expenses } = useContext(AppContext);
   const [editableBudget, setEditableBudget] = useState(budget);
+  const { currency } = useContext(CurrencyContext);
 
   const handleBudgetChange = (event) => {
     setEditableBudget(event.target.value);
@@ -25,7 +27,7 @@ const Budget = () => {
 
   return (
     <div id="container-budget" className="alert alert-secondary">
-      Budget: £
+      Budget: {currency}
       <input
         type="text"
         name="myInput"
