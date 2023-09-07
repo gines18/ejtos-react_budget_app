@@ -3,6 +3,21 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { CurrencyContext } from './CurrencyContext';
 
+const getCurrencySymbol = (currency) => {
+    switch (currency) {
+      case "$ Dollar":
+        return "$";
+      case "£ Pound":
+        return "£";
+      case "€ Euro":
+        return "€";
+      case "₹ Rupee":
+        return "₹";
+      default:
+        return "";
+    }
+  };
+
 const AllocationForm = (props) => {
     const { dispatch,remaining  } = useContext(AppContext);
     const { currency } = useContext(CurrencyContext);
@@ -60,13 +75,13 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
-                    <span>{currency}</span>
+                   <span style={{marginLeft: "15px",marginRight: "3px"}}>{getCurrencySymbol(currency)}</span>
                     <input
                         required='required'
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
+                        style={{ size: 10}}
                         onChange={(event) => setCost(event.target.value)}>
                         </input>
 

@@ -21,13 +21,28 @@ const Budget = () => {
     const newBudget = parseInt(editableBudget) - 10;
     setEditableBudget(newBudget);
     if (newBudget < expenses.reduce((total, item) => total + item.cost, 0)) {
-      alert("You cannot reduce the budget value lower than ehe spending!");
+      alert("You cannot reduce the budget value lower than the spending!");
+    }
+  };
+
+
+  const getCurrencySymbol = (currency) => {
+    switch (currency) {
+      case "$ Dollar":
+        return "$";
+      case "£ Pound":
+        return "£";
+      case "€ Euro":
+        return "€";
+      case "₹ Rupee":
+        return "₹";
+    
     }
   };
 
   return (
     <div id="container-budget" className="alert alert-secondary">
-      Budget: {currency}
+      Budget: {getCurrencySymbol(currency)}
       <input
         type="text"
         name="myInput"
